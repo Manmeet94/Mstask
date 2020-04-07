@@ -17,20 +17,14 @@ This file contains all of the agents that can be selected to control Pacman.  To
 select an agent, use the '-p' option when running pacman.py.  Arguments can be
 passed to your agent using '-a'.  For example, to load a SearchAgent that uses
 depth first search (dfs), run the following command:
-
 > python pacman.py -p SearchAgent -a fn=depthFirstSearch
-
 Commands to invoke other search strategies can be found in the project
 description.
-
 Please only change the parts of the file you are asked to.  Look for the lines
 that say
-
 "*** YOUR CODE HERE ***"
-
 The parts you fill in start about 3/4 of the way down.  Follow the project
 description for details.
-
 Good luck and happy searching!
 """
 
@@ -61,15 +55,11 @@ class SearchAgent(Agent):
     This very general search agent finds a path using a supplied search
     algorithm for a supplied search problem, then returns actions to follow that
     path.
-
     As a default, this agent runs DFS on a PositionSearchProblem to find
     location (1,1)
-
     Options for fn include:
       depthFirstSearch or dfs
       breadthFirstSearch or bfs
-
-
     Note: You should NOT change any code in SearchAgent
     """
 
@@ -106,7 +96,6 @@ class SearchAgent(Agent):
         board. Here, we choose a path to the goal. In this phase, the agent
         should compute the path to the goal and store it in a local variable.
         All of the work is done in this method!
-
         state: a GameState object (pacman.py)
         """
         if self.searchFunction == None: raise Exception, "No search function provided for SearchAgent"
@@ -122,7 +111,6 @@ class SearchAgent(Agent):
         Returns the next action in the path chosen earlier (in
         registerInitialState).  Return Directions.STOP if there is no further
         action to take.
-
         state: a GameState object (pacman.py)
         """
         if 'actionIndex' not in dir(self): self.actionIndex = 0
@@ -138,16 +126,13 @@ class PositionSearchProblem(search.SearchProblem):
     A search problem defines the state space, start state, goal test, successor
     function and cost function.  This search problem can be used to find paths
     to a particular point on the pacman board.
-
     The state space consists of (x,y) positions in a pacman game.
-
     Note: this search problem is fully specified; you should NOT change it.
     """
 
     def __init__(self, gameState, costFn = lambda x: 1, goal=(1,1), start=None, warn=True, visualize=True):
         """
         Stores the start and goal.
-
         gameState: A GameState object (pacman.py)
         costFn: A function from a search state (tuple) to a non-negative number
         goal: A position in the gameState
@@ -183,7 +168,6 @@ class PositionSearchProblem(search.SearchProblem):
     def getSuccessors(self, state):
         """
         Returns successor states, the actions they require, and a cost of 1.
-
          As noted in search.py:
              For a given state, this should return a list of triples,
          (successor, action, stepCost), where 'successor' is a
@@ -230,7 +214,6 @@ class StayEastSearchAgent(SearchAgent):
     """
     An agent for position search with a cost function that penalizes being in
     positions on the West side of the board.
-
     The cost function for stepping into a position (x,y) is 1/2^x.
     """
     def __init__(self):
@@ -242,7 +225,6 @@ class StayWestSearchAgent(SearchAgent):
     """
     An agent for position search with a cost function that penalizes being in
     positions on the East side of the board.
-
     The cost function for stepping into a position (x,y) is 2^x.
     """
     def __init__(self):
@@ -296,9 +278,9 @@ class CornersProblem(search.SearchProblem):
         space)
         """
         "*** YOUR CODE HERE ***"
-        #Initial summary (start position, corner case)
-        allCorners = (False, False, False, False)
-        start = (self.startingPosition, allCorners)
+        
+        allthecorner = (False, False, False, False)
+        start = (self.startingPosition, allthecorner)
         return start
         util.raiseNotDefined()
 
@@ -307,9 +289,9 @@ class CornersProblem(search.SearchProblem):
         Returns whether this search state is a goal state of the problem.
         """
         "*** YOUR CODE HERE ***"
-        #Target test: visited in all four corners
-        corners = state[1]
-        boolean = corners[0] and corners[1] and corners[2] and corners[3]
+        
+        corners = state[2]
+        boolean = corners[1] and corners[2] and corners[3] and corners[4]
         return boolean
         util.raiseNotDefined()
 
@@ -482,12 +464,12 @@ def foodHeuristic(state, problem):
     """
     State is a tuple（pacmanPosition，foodGrid）
     Where foodGrid is a Grid (see game.py)
-     Call foodGrid.asList () to get a list of food coordinates.
-     If you want to store information, you can reuse it in other calls
-     Heuristically, you can use a dictionary called problem.heuristicInfo
-     For example, if you want to count the wall only once and store it
-     Try: problem.heuristicInfo ['wallCount'] = problem.walls.count ()
-     Subsequent calls to this heuristic are accessible
+     Call foodGrid.asList () to get a list of food coordinates.
+     If you want to store information, you can reuse it in other calls
+     Heuristically, you can use a dictionary called problem.heuristicInfo
+     For example, if you want to count the wall only once and store it
+     Try: problem.heuristicInfo ['wallCount'] = problem.walls.count ()
+     Subsequent calls to this heuristic are accessible
     problem.heuristicInfo [ 'wallCount']
     """
     position, foodGrid = state
@@ -605,9 +587,7 @@ def mazeDistance(point1, point2, gameState):
     Returns the maze distance between any two points, using the search functions
     you have already built. The gameState can be any game state -- Pacman's
     position in that state is ignored.
-
     Example usage: mazeDistance( (2,4), (5,6), gameState)
-
     This might be a useful helper function for your ApproximateSearchAgent.
     """
     x1, y1 = point1
