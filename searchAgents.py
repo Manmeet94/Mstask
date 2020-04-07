@@ -474,7 +474,7 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
-    heuristicvalue = 0
+    hvalue = 0
     food_available = []
     total_distance = 0
     #Constructs heuristic functions by processing the position of the food
@@ -500,13 +500,13 @@ def foodHeuristic(state, problem):
     #Connect the starting point with the first food searched
     #Dealing with situations where there is only one food
     if(max_distance[0]==(0,0) and max_distance[1]==(0,0)):
-        heuristicvalue = util.manhattanDistance(position,food_available[0])
+        hvalue = util.manhattanDistance(position,food_available[0])
     else: 
         d1 = util.manhattanDistance(position,max_distance[0])
         d2 = util.manhattanDistance(position,max_distance[1])
-        heuristicvalue = max_distance[2] + min(d1,d2)
+        hvalue = max_distance[2] + min(d1,d2)
     
-    return heuristicvalue
+    return hvalue
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
