@@ -290,8 +290,8 @@ class CornersProblem(search.SearchProblem):
         """
         "*** YOUR CODE HERE ***"
         
-        corners = state[2]
-        boolean = corners[1] and corners[2] and corners[3] and corners[4]
+        corners = state[1]
+        boolean = corners[0] and corners[1] and corners[2] and corners[3]
         return boolean
         util.raiseNotDefined()
 
