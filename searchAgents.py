@@ -290,8 +290,8 @@ class CornersProblem(search.SearchProblem):
         """
         "*** YOUR CODE HERE ***"
         
-        corners = state[1]
-        boolean = corners[0] and corners[1] and corners[2] and corners[3]
+        corners = state[2]
+        boolean = corners[1] and corners[2] and corners[3] and corners[4]
         return boolean
         util.raiseNotDefined()
 
@@ -309,10 +309,10 @@ class CornersProblem(search.SearchProblem):
         for action in [Directions.NORTH, Directions.SOUTH, Directions.EAST, Directions.WEST]:
             # Add a successor state to the successor list if the action is legal
             "*** YOUR CODE HERE ***"
-             #   x,y = currentPosition
+            
             x,y = state[0]
             holdCorners = state[1]
-            #   dx, dy = Actions.directionToVector(action)
+         
             dx, dy = Actions.directionToVector(action)
             nextx, nexty = int(x + dx), int(y + dy)
             hitsWall = self.walls[nextx][nexty]
@@ -474,7 +474,7 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
-    hvalue = 0
+    heuristicvalue = 0
     food_available = []
     total_distance = 0
     #Constructs heuristic functions by processing the position of the food
@@ -500,13 +500,13 @@ def foodHeuristic(state, problem):
     #Connect the starting point with the first food searched
     #Dealing with situations where there is only one food
     if(max_distance[0]==(0,0) and max_distance[1]==(0,0)):
-        hvalue = util.manhattanDistance(position,food_available[0])
+        heuristicvalue = util.manhattanDistance(position,food_available[0])
     else: 
         d1 = util.manhattanDistance(position,max_distance[0])
         d2 = util.manhattanDistance(position,max_distance[1])
-        hvalue = max_distance[2] + min(d1,d2)
+        heuristicvalue = max_distance[2] + min(d1,d2)
     
-    return hvalue
+    return heuristicvalue
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
